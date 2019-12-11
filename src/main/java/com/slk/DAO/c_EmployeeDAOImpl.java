@@ -43,7 +43,7 @@ import com.slk.util.DButil;
 		
 		public List<c_Customer> getAllCustomer(String id) throws SQLException {
 			// TODO Auto-generated method stub
-			String query1="select account_no,c.name,c.dob,c.phone_no,c.username,c.password,c.amount,b.name,l.loan_type,ac.ac_type,c.aadhar,c.action from d_customer c,d_agent a,d_branch b,d_loan l,d_account ac where c.branch_id=b.id and b.id=a.branch_id and ac.type_id=c.type_id and l.id=c.loan_idand a.username='"+id+"'";
+			String query1="select account_no,c.name,c.dob,c.phone_no,c.username,c.password,c.amount,b.name,l.loan_type,ac.ac_type,c.aadhar,c.action from d_customer c,d_agent a,d_branch b,d_loan l,d_account ac where c.branch_id=b.id and b.id=a.branch_id and ac.type_id=c.type_id and l.id=c.loan_id and a.username='"+id+"'";
 			Statement st1=con.createStatement();
 			ResultSet rs=st1.executeQuery(query1);
 			List<c_Customer> l=new ArrayList<c_Customer>();
