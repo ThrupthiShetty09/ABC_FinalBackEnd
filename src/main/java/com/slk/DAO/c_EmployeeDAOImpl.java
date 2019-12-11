@@ -71,7 +71,7 @@ import com.slk.util.DButil;
 			// TODO Auto-generated method stub
 			
 			
-			String query1="select distinct(c.account_no),t.trans_date,t.credit,t.debit,t.balance from c_customer c,c_agent a,c_branch b,c_transaction t where d.branch_id=d.branch_id and d.branch_id=d.branch_id and d.account_no=d.account_no and a.username='"+id+"'";
+			String query1="select distinct(c.account_no),t.trans_date,t.credit,t.debit,t.balance from d_customer c,d_agent a,d_branch b,d_transaction t where a.branch_id=b.id and c.branch_id=b.id and c.account_no=t.account_no and a.username='"+id+"'";
 			Statement st1=con.createStatement();
 			ResultSet rs=st1.executeQuery(query1);
 			List<c_Transaction> tt=new ArrayList<c_Transaction>();
