@@ -9,7 +9,7 @@ import com.slk.model.*;
 public interface B_AgentDAO {
      void addAgent(B_Agent agent);
 	
-    public void updateAgent(B_Agent agent);
+  //  public void updateAgent(B_Agent agent);
 	
 	//public void   deleteAgent(Agent agent) ;
 	int deleteAgent(int id) throws SQLException;

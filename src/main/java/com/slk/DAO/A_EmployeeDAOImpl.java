@@ -32,7 +32,7 @@ public class A_EmployeeDAOImpl implements A_EmployeeDAO {
 	 {
 		connection = DButil.getConnection();
 		System.out.println(connection);
-		String query = "Select * from a_employee where emp_role = 'superUser' ";
+		String query = "Select * from d_employee where emp_role = 'superUser' ";
 	
 		superuser = new ArrayList<>();
 		PreparedStatement st;
@@ -74,7 +74,7 @@ public class A_EmployeeDAOImpl implements A_EmployeeDAO {
 	
 	 @Override
 	public List<A_Employee> getAllEmployee(){
-		String query = "Select * from a_employee where emp_role = 'admin' ";
+		String query = "Select * from d_employee where emp_role = 'admin' ";
 		//Employee emp;
 		admins = new ArrayList<>();
 		PreparedStatement st;
@@ -122,7 +122,7 @@ public Long deleteEmployee(Long empId) {
 	// TODO Auto-generated method stub
 	try{
 		
-		String sql="DELETE FROM a_employee WHERE empId = ? ";			
+		String sql="DELETE FROM d_employee WHERE empId = ? ";			
 		PreparedStatement pst = connection.prepareStatement(sql);
 		pst.setLong(1, empId);
 		
@@ -147,7 +147,7 @@ public Long deleteEmployee(Long empId) {
 public A_Employee registerAdmin(A_Employee a_Employee) {
 	// TODO Auto-generated method stub
 	String role = "admin";
-	String select_query = "Select max(empId) from a_employee";
+	String select_query = "Select max(empId) from d_employee";
 	Statement select_stmt;
 	int i=0;
 	try {
@@ -158,7 +158,7 @@ public A_Employee registerAdmin(A_Employee a_Employee) {
 		int emp_Id = select_rs.getInt(1);
 		int temp_empId = ++emp_Id;
 		
-		PreparedStatement pst = connection.prepareStatement("Insert into a_employee values(?,?,?,?,?,?,?)");
+		PreparedStatement pst = connection.prepareStatement("Insert into d_employee values(?,?,?,?,?,?,?)");
 		
 		pst.setInt(1,temp_empId);
 		pst.setString(2,a_Employee.getName());
@@ -186,7 +186,7 @@ public A_Employee updateAdmin(Long empId,A_Employee emp)
 	try {
 		
 		
-		String updSql = "UPDATE  a_employee set name = ?,DOB = ?,phone_no = ?,username = ?,password = ?,emp_role = ? WHERE empId = ?";
+		String updSql = "UPDATE  d_employee set name = ?,DOB = ?,phone_no = ?,username = ?,password = ?,emp_role = ? WHERE empId = ?";
 		PreparedStatement pst = connection.prepareStatement(updSql);
 		System.out.println(emp.getName());
 		pst.setString(1, emp.getName());

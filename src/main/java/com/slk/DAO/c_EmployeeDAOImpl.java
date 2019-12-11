@@ -43,7 +43,7 @@ import com.slk.util.DButil;
 		
 		public List<c_Customer> getAllCustomer(String id) throws SQLException {
 			// TODO Auto-generated method stub
-			String query1="select account_no,c.name,c.dob,c.phone_no,c.username,c.password,c.amount,b.branch_name,l.loan_type,ac.ac_type,c.aadhar,c.pan,c.action from c_customer c,c_agent a,c_branch b,c_loan l,c_account ac where c.branch_id=b.branch_id and b.branch_id=a.branch_id and ac.type_id=c.type_id and l.loan_id=c.loan_id and a.username='"+id+"'";
+			String query1="select account_no,c.name,c.dob,c.phone_no,c.username,c.password,c.amount,b.name,l.loan_type,ac.ac_type,c.aadhar,c.action from d_customer c,d_agent a,d_branch b,d_loan l,d_account ac where c.branch_id=b.id and b.id=a.branch_id and ac.type_id=c.type_id and l.id=c.loan_idand a.username='"+id+"'";
 			Statement st1=con.createStatement();
 			ResultSet rs=st1.executeQuery(query1);
 			List<c_Customer> l=new ArrayList<c_Customer>();
@@ -72,7 +72,7 @@ import com.slk.util.DButil;
 			// TODO Auto-generated method stub
 			
 			
-			String query1="select distinct(c.account_no),t.trans_date,t.credit,t.debit from c_customer c,c_agent a,c_branch b,c_transaction t where c.branch_id=b.branch_id and b.branch_id=a.branch_id and c.account_no=t.account_no and a.username='"+id+"'";
+			String query1="select distinct(c.account_no),t.trans_date,t.credit,t.debit,t.balance from c_customer c,c_agent a,c_branch b,c_transaction t where d.branch_id=d.branch_id and d.branch_id=d.branch_id and d.account_no=d.account_no and a.username='"+id+"'";
 			Statement st1=con.createStatement();
 			ResultSet rs=st1.executeQuery(query1);
 			List<c_Transaction> tt=new ArrayList<c_Transaction>();
@@ -93,7 +93,7 @@ import com.slk.util.DButil;
 		
 		public List listLogin() {
 			employees = new ArrayList();
-			String query1="select username,password from c_agent";
+			String query1="select username,password from d_agent";
 			Statement st1;
 			try {
 				st1 = con.createStatement();
@@ -125,7 +125,7 @@ import com.slk.util.DButil;
 		 */
 		public List list(String id) {
 			employees = new ArrayList();
-			String query1="select agentid,name,a.address,dob,contact,username,password,mail,branch_name from c_agent a,c_branch b where a.branch_id=b.branch_id and a.username='"+id+"'";
+			String query1="select agentid,name,a.address,dob,contact,username,password,mail,branch_name from d_agent a,d_branch b where a.branch_id=b.branch_id and a.username='"+id+"'";
 			Statement st1;
 			try {
 				st1 = con.createStatement();
@@ -209,7 +209,7 @@ import com.slk.util.DButil;
 		 
 		public String delete(String id) {
 
-			String query1="Delete from c_agent where agentid=?";
+			String query1="Delete from d_agent where agentid=?";
 			PreparedStatement st1;
 			try {
 				System.out.println(id);
@@ -238,7 +238,7 @@ import com.slk.util.DButil;
 		 
 		public c_Customer update(Long id, c_Customer c) {
 
-			String query1="Update c_customer set action=? where account_no=?";
+			String query1="Update d_customer set action=? where account_no=?";
 			PreparedStatement st1;
 			
 			try {
@@ -261,7 +261,7 @@ import com.slk.util.DButil;
 		public c_Employee updateAgent(Long id, c_Employee e)  {
 			// TODO Auto-generated method stub
 			try {
-				String sql="update c_agent set name=?,address=?,dob=?,contact=?,mail=? where agentid=?";
+				String sql="update d_agent set name=?,address=?,dob=?,contact=?,mail=? where agentid=?";
 				PreparedStatement pst=con.prepareStatement(sql);
 			    pst.setString(1, e.getEmpname());
 			    pst.setString(2, e.getAddress());

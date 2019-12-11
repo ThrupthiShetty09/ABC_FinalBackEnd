@@ -26,7 +26,7 @@ public class D_CustomerImpl implements D_CustomerInterface {
 			conn =DButil.getConnection();
 			System.out.println("test ");
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from D_CUSTOMER");
+			ResultSet rs = stmt.executeQuery("select * from d_customer");
 			while (rs.next()) {
 				System.out.println("name ="+rs.getString("name"));
 				D_Customer cust = new D_Customer();
@@ -101,16 +101,16 @@ public class D_CustomerImpl implements D_CustomerInterface {
 		try {
 			Connection conn =DButil.getConnection();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select amount,type_id from D_CUSTOMER where account_no=" + sendAccNo);
+			ResultSet rs = stmt.executeQuery("select amount,type_id from d_customer where account_no=" + sendAccNo);
 			while (rs.next()) {
 				sendTempAmt = rs.getDouble("amount");
 				accType = rs.getString("type_id");
 			}
-			rs = stmt.executeQuery("select amount from D_CUSTOMER where account_no=" + receiveAccNo);
+			rs = stmt.executeQuery("select amount from d_customer where account_no=" + receiveAccNo);
 			while (rs.next()) {
 				receiveTempAmt = rs.getDouble("amount");
 			}
-			rs = stmt.executeQuery("select max(id) as id from D_TRANSACTION");
+			rs = stmt.executeQuery("select max(id) as id from d_transaction");
 			while (rs.next()) {
 				transId = rs.getInt("id");
 			}
@@ -121,8 +121,8 @@ public class D_CustomerImpl implements D_CustomerInterface {
 				if (tempAmt >= 5000) {
 					debit = amount;
 
-					stmt.executeUpdate("update D_CUSTOMER set amount=" + tempAmt + "where account_no=" + sendAccNo);
-					stmt.executeUpdate("insert into D_TRANSACTION values(" + transId + ",'" + formatter.format(date)
+					stmt.executeUpdate("update d_customer set amount=" + tempAmt + "where account_no=" + sendAccNo);
+					stmt.executeUpdate("insert into d_transaction values(" + transId + ",'" + formatter.format(date)
 							+ "'," + credit + "," + debit + "," + sendAccNo + "," + tempAmt + ")");
 					System.out.println("Sender balance= " + tempAmt);
 					debit = 0;
@@ -130,8 +130,8 @@ public class D_CustomerImpl implements D_CustomerInterface {
 
 					tempAmt = receiveTempAmt + amount;
 					transId++;
-					stmt.executeUpdate("update D_CUSTOMER set amount=" + tempAmt + "where account_no=" + receiveAccNo);
-					stmt.executeUpdate("insert into D_TRANSACTION values(" + transId + ",'" + formatter.format(date)
+					stmt.executeUpdate("update d_customer set amount=" + tempAmt + "where account_no=" + receiveAccNo);
+					stmt.executeUpdate("insert into d_transaction values(" + transId + ",'" + formatter.format(date)
 							+ "'," + credit + "," + debit + "," + receiveAccNo + "," + tempAmt + ")");
 					System.out.println("receiver balance= " + tempAmt);
 					flag = 1;
@@ -143,8 +143,8 @@ public class D_CustomerImpl implements D_CustomerInterface {
 				if (tempAmt >= 500) {
 					debit = amount;
 
-					stmt.executeUpdate("update D_CUSTOMER set amount=" + tempAmt + "where account_no=" + sendAccNo);
-					stmt.executeUpdate("insert into D_TRANSACTION values(" + transId + ",'" + formatter.format(date)
+					stmt.executeUpdate("update d_customer set amount=" + tempAmt + "where account_no=" + sendAccNo);
+					stmt.executeUpdate("insert into d_transaction values(" + transId + ",'" + formatter.format(date)
 							+ "'," + credit + "," + debit + "," + sendAccNo + "," + tempAmt + ")");
 					System.out.println("Sender balance= " + tempAmt);
 					debit = 0;
@@ -152,8 +152,8 @@ public class D_CustomerImpl implements D_CustomerInterface {
 
 					tempAmt = receiveTempAmt + amount;
 					transId++;
-					stmt.executeUpdate("update D_CUSTOMER set amount=" + tempAmt + "where account_no=" + receiveAccNo);
-					stmt.executeUpdate("insert into D_TRANSACTION values(" + transId + ",'" + formatter.format(date)
+					stmt.executeUpdate("update d_customer set amount=" + tempAmt + "where account_no=" + receiveAccNo);
+					stmt.executeUpdate("insert into d_transaction values(" + transId + ",'" + formatter.format(date)
 							+ "'," + credit + "," + debit + "," + receiveAccNo + "," + tempAmt + ")");
 					System.out.println("receiver balance= " + tempAmt);
 					flag = 1;
@@ -177,7 +177,7 @@ public class D_CustomerImpl implements D_CustomerInterface {
 		try {
 			Connection conn = DButil.getConnection();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from D_TRANSACTION where account_no=" + id);
+			ResultSet rs = stmt.executeQuery("select * from d_transaction where account_no=" + id);
 			while (rs.next()) {
 				D_Transaction tl = new D_Transaction();
 				tl.setId(rs.getInt("id"));
@@ -226,7 +226,7 @@ public class D_CustomerImpl implements D_CustomerInterface {
 						Connection conn = DButil.getConnection();
 						Statement stmt = conn.createStatement();
 						ResultSet rs = stmt.executeQuery(
-								"select D_LOAN.id as id,D_LOAN.loan_type as loan_type ,D_LOAN.interest_rate as interest_rate from D_CUSTOMER,D_LOAN where account_no="
+								"select d_loan.id as id,d_loan.loan_type as loan_type ,d_loan.interest_rate as interest_rate from d_customer,d_loan where account_no="
 										+ id + " and id='" + ltype + "'");
 
 						while (rs.next()) {
@@ -248,7 +248,7 @@ public class D_CustomerImpl implements D_CustomerInterface {
 						Connection conn = DButil.getConnection();
 						Statement stmt = conn.createStatement();
 						ResultSet rs = stmt.executeQuery(
-								"select D_LOAN.id as id,D_LOAN.loan_type as loan_type ,D_LOAN.interest_rate as interest_rate from D_CUSTOMER,D_LOAN where account_no="
+								"select d_loan.id as id,d_loan.loan_type as loan_type ,d_loan.interest_rate as interest_rate from d_customer,d_loan where account_no="
 										+ id + " and id='" + ltype + "'");
 
 						while (rs.next()) {
@@ -271,7 +271,7 @@ public class D_CustomerImpl implements D_CustomerInterface {
 						Connection conn = DButil.getConnection();
 						Statement stmt = conn.createStatement();
 						ResultSet rs = stmt.executeQuery(
-								"select D_LOAN.id as id,D_LOAN.loan_type as loan_type ,D_LOAN.interest_rate as interest_rate from D_CUSTOMER,D_LOAN where account_no="
+								"select d_loan.id as id,d_loan.loan_type as loan_type ,d_loan.interest_rate as interest_rate from d_customer,d_loan where account_no="
 										+ id + " and id='" + ltype + "'");
 
 						while (rs.next()) {
@@ -312,7 +312,7 @@ public class D_CustomerImpl implements D_CustomerInterface {
 				try {
 					Connection conn = DButil.getConnection();
 					Statement stmt = conn.createStatement();
-					stmt.executeUpdate("update D_CUSTOMER set name='" + cust.getName() + "',DOB='" + cust.getDob()
+					stmt.executeUpdate("update d_customer set name='" + cust.getName() + "',DOB='" + cust.getDob()
 							+ "',phone_no=" + cust.getPhone_no() + ",username='" + cust.getUsername() + "',password='"
 							+ cust.getPassword() + "' where account_no=" + id + "");
 					System.out.println("successfull updated......!");

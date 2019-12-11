@@ -38,7 +38,7 @@ public class B_AgentDAOimpl implements B_AgentDAO {
 		try {
 			System.out.println("function inside list");
 
-			PreparedStatement stmt = connection.prepareStatement("select * from b_agent");
+			PreparedStatement stmt = connection.prepareStatement("select * from d_agent");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 
@@ -70,7 +70,7 @@ public class B_AgentDAOimpl implements B_AgentDAO {
 		// TODO Auto-generated method stub
 		try {
 			
-			java.sql.PreparedStatement pst = connection.prepareStatement("Insert into b_agent values(?,?,?,?,?,?,?)");
+			java.sql.PreparedStatement pst = connection.prepareStatement("Insert into d_agent values(?,?,?,?,?,?,?)");
 			System.out.println("function incoming");
 			pst.setInt(1, agent.getAgent_id());
 			pst.setString(2, agent.getName());
@@ -90,12 +90,12 @@ public class B_AgentDAOimpl implements B_AgentDAO {
 	}
 
 	// //@Override
-	public void updateAgent(B_Agent agent) {
+	/*public void updateAgent(B_Agent agent) {
 		// TODO Auto-generated method stub
 
 		try {
 
-			String sql = ("Update b_agent set name=?,DOB=?,phone_no=?,username=?,password=?,branch_id=? where agent_id=?");
+			String sql = ("Update d_agent set name=?,DOB=?,phone_no=?,username=?,password=?,branch_id=? where agent_id=?");
 
 			PreparedStatement pst = connection.prepareStatement(sql);
 
@@ -121,7 +121,7 @@ public class B_AgentDAOimpl implements B_AgentDAO {
 		}
 
 	}
-
+*/
 	// @Override
 	public B_Agent getAgentById(int id) {
 		// TODO Auto-generated method stub
@@ -131,7 +131,7 @@ public class B_AgentDAOimpl implements B_AgentDAO {
 
 		try {
 
-			String sql = "Select * from b_agent where agent_id=?";
+			String sql = "Select * from d_agent where agent_id=?";
 
 			PreparedStatement pst = connection.prepareStatement(sql);
 
@@ -171,7 +171,7 @@ public class B_AgentDAOimpl implements B_AgentDAO {
 		System.out.println("function coming in to delete");
 		System.out.println(agent_id);
 		B_Agent agent = new B_Agent();
-		String sql = "DELETE FROM b_agent WHERE agent_id =?";
+		String sql = "DELETE FROM d_agent WHERE agentid =?";
 		PreparedStatement pst = connection.prepareStatement(sql);
 		// pst.setInt(1, agent.getAgent_id());
 		pst.setInt(1, agent_id);

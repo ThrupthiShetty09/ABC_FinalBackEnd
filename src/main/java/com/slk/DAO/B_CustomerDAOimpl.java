@@ -31,7 +31,7 @@ public class B_CustomerDAOimpl implements B_CustomerDAO {
 
 			try {
 
-				PreparedStatement stmt = connection.prepareStatement("select * from b_customer");
+				PreparedStatement stmt = connection.prepareStatement("select * from d_customer");
 				ResultSet rs = stmt.executeQuery();
 				while (rs.next()) {
 

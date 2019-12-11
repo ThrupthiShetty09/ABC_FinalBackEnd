@@ -33,7 +33,7 @@ public class B_AdminDAOimpl implements B_AdminDAO {
 		B_Admin ad = new B_Admin();
 		boolean flag = false;
 		PreparedStatement stmt = connection
-				.prepareStatement("select username,password from b_admin where username=?  and password=? ");
+				.prepareStatement("select username,password from d_admin where username=?  and password=? ");
 		stmt.setString(1, username);
 		stmt.setString(2, password);
 		ResultSet rs = stmt.executeQuery();
@@ -60,7 +60,7 @@ public class B_AdminDAOimpl implements B_AdminDAO {
 		System.out.println("ID to be updated " + empId);
 		try {
 			// Admin ad = new Admin();
-			String sql = ("UPDATE b_admin SET name=?,DOB=?,phone_num=?,username=?,password=?,role=? where empId=?");
+			String sql = ("UPDATE d_admin SET name=?,DOB=?,phone_num=?,username=?,password=?,role=? where empId=?");
 
 			PreparedStatement pst = connection.prepareStatement(sql);
 
