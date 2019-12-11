@@ -61,8 +61,7 @@ import com.slk.util.DButil;
 		         c.setLoan_type(rs.getString(9));
 		         c.setAcc_type(rs.getString(10));
 		         c.setAadhar_card(rs.getLong(11));
-		         c.setPan_card(rs.getString(12));
-		         c.setAction(rs.getString(13));
+		         c.setAction(rs.getString(12));
 		         l.add(c);
 		         
 		    }
