@@ -124,7 +124,7 @@ import com.slk.util.DButil;
 		 */
 		public List list(String id) {
 			employees = new ArrayList();
-			String query1="select agentid,name,a.address,dob,contact,username,password,mail,branch_name from d_agent a,d_branch b where a.branch_id=b.branch_id and a.username='"+id+"'";
+			String query1="select agentid,a.name,a.address,dob,contact,username,a.password,mail,branch_id from d_agent a,d_branch b where a.branch_id=b.id and a.username='"+id+"'";
 			Statement st1;
 			try {
 				st1 = con.createStatement();
@@ -136,7 +136,6 @@ import com.slk.util.DButil;
 			         e.setEmpname(rs.getString(2));
 			         e.setAddress(rs.getString(3));
 			         e.setEmpdob(rs.getString(4));
-			        
 			         e.setEmpcontact(rs.getLong(5));
 			         e.setUsername(rs.getString(6));
 			         e.setPassword(rs.getString(7));
