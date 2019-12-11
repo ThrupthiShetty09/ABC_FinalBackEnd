@@ -85,7 +85,7 @@ public class B_AgentRestController {
 
 	}
 
-	@PutMapping("/put/B_Agent/{agent_id}")
+	/*@PutMapping("/put/B_Agent/{agent_id}")
 	public ResponseEntity updateAgent(@PathVariable int agent_id, @RequestBody B_Agent agent) {
 		
 		// if (null == customer) {
@@ -94,5 +94,5 @@ public class B_AgentRestController {
 		// }
 		agentDAO.updateAgent(agent);
 		return new ResponseEntity(agent, HttpStatus.OK);
-	}
+	}*/
 }
