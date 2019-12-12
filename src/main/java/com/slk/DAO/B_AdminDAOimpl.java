@@ -33,7 +33,7 @@ public class B_AdminDAOimpl implements B_AdminDAO {
 		B_Admin ad = new B_Admin();
 		boolean flag = false;
 		PreparedStatement stmt = connection
-				.prepareStatement("select username,password from d_admin where username=?  and password=? ");
+				.prepareStatement("select username,password from d_employee where username=?  and password=? and emp_role='admin' ");
 		stmt.setString(1, username);
 		stmt.setString(2, password);
 		ResultSet rs = stmt.executeQuery();
