@@ -11,7 +11,7 @@ public class B_Customer {
 	public String loan_id;
 	public String type_id;
 	public long aadhar_no;
-	public String pan_no;
+	public String action;
 
 	public int getAccount_no() {
 		return account_no;
@@ -101,12 +101,12 @@ public class B_Customer {
 		this.aadhar_no = aadhar_no;
 	}
 
-	public String getPan_no() {
-		return pan_no;
+	public String getAction() {
+		return action;
 	}
 
-	public void setPan_no(String pan_no) {
-		this.pan_no = pan_no;
+	public void setAction(String action) {
+		this.action = action;
 	}
 
 }

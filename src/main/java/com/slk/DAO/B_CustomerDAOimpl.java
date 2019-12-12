@@ -46,9 +46,8 @@ public class B_CustomerDAOimpl implements B_CustomerDAO {
 					cst1.setBranch_id(rs.getLong(8));
 					cst1.setLoan_id(rs.getString(9));
 					cst1.setType_id(rs.getString(10));
-					cst1.setAadhar_no(rs.getLong(11));
-					cst1.setPan_no(rs.getString(12));
-
+					cst1.setAction(rs.getString(11));
+					cst1.setAadhar_no(rs.getLong(12));
 					System.out.println(rs.getInt(1) + " " + rs.getString(2));
 
 					cst.add(cst1);
